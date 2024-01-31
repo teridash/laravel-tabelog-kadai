@@ -25,6 +25,10 @@ class CheckoutController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'card-holder-name' => 'required',
+        ]);
+
         $request->user()->newSubscription(
             'main',env('STRIPE_ID')
         )->create($request->payment_method);
@@ -48,6 +52,9 @@ class CheckoutController extends Controller
     }
 
     public function update(Request $request) {
+        $request->validate([
+            'card-holder-name' => 'required',
+        ]);
 
         $request->user()
             ->updateDefaultPaymentMethod($request->payment_method);

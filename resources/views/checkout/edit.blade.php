@@ -17,11 +17,15 @@
     <form id="card_form" action="{{route('checkout.update')}}" method="POST">
       @csrf
       <label for="name" class="mt-2 ms-2 fs-5">新しいクレジットカード</label>
-      <input id="card-holder-name" type="text" class="form-control mt-2" placeholder="カード名義人">
+      <input id="card-holder-name" name="card-holder-name" type="text" class="form-control mt-2" placeholder="カード名義人">
       <div id="card-element" class="form-control form-control-lg mt-3"></div>
       <input name="payment_method" type="hidden">
     </form>
-    <button id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-success mt-3">
+    @error('card-holder-name')
+    <p>カード名義人を入力してください</p>
+    @enderror
+
+    <button type="button" id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-success mt-3">
     更新    
     </button>
   </div>

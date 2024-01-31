@@ -8,13 +8,17 @@
     <form id="card_form" action="{{route('checkout.store')}}" method="POST">
       @csrf
       <label for="name" class="mt-2 ms-2 fs-5">クレジットカード登録</label>
-      <input id="card-holder-name" type="text" class="form-control mt-1" placeholder="カード名義人">
+      <input id="card-holder-name" name="card-holder-name" type="text" class="form-control mt-1" placeholder="カード名義人">
       <div id="card-element" class="form-control form-control-lg mt-3"></div>
       <input name="payment_method" type="hidden">
     </form>
 
+    @error('card-holder-name')
+    <p>カード名義人を入力してください</p>
+    @enderror
 
-    <button id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-success mt-3 mb-3">
+
+    <button type="button" id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-success mt-3 mb-3">
         登録
     </button>
   </div>
