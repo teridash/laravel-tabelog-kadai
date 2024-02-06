@@ -51,7 +51,7 @@ class UserController extends Controller
     public function update_password(Request $request)
     {
         $validatedData = $request->validate([
-            'password' => 'required|comfirmed',
+            'password' => 'required|comfirm',
         ]);
         
         $user = Auth::user();
