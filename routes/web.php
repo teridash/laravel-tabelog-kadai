@@ -35,9 +35,10 @@ Route::controller(UserController::class)->middleware('auth')->group(function () 
 
 Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
+Route::resource('stores', StoreController::class)->middleware(['auth', 'verified']);
 Auth::routes(['verify' => true]);
 
-Route::resource('stores', StoreController::class);
+
 Route::resource('reservations', ReservationController::class);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
